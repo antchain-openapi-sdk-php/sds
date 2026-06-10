@@ -19,32 +19,41 @@ class SubmitScenedataTaskRequest extends Model
      */
     public $productInstanceId;
 
-    // 约定的场景枚举
+    // 【场景】约定的场景枚举
     /**
      * @var string
      */
     public $scene;
 
-    // 枚举
-    // PHONE_SHA1
-    // PHONE_MD5
+    // 【业务号类型】该字段逐步废弃，枚举-PHONE_SHA1，PHONE_MD5
     /**
      * @var string
      */
     public $bizNoType;
 
-    // 适配客户的来源
-    // 可能是客户的任务/AK
+    // 【来源标识】适配客户的来源，可能是客户的任务/AK
     /**
      * @var string
      */
     public $sourceMark;
 
-    // 业务号预期条件
+    // 【动态参数】任务动态参数信息
     /**
      * @var BizNoCondition[]
      */
     public $expectCondition;
+
+    // 【外部批次号】和任务类型组成唯一键
+    /**
+     * @var string
+     */
+    public $outBatchNo;
+
+    // 【任务类型】SDS根据类型触发异步处理流程
+    /**
+     * @var string
+     */
+    public $taskType;
     protected $_name = [
         'authToken'         => 'auth_token',
         'productInstanceId' => 'product_instance_id',
@@ -52,12 +61,13 @@ class SubmitScenedataTaskRequest extends Model
         'bizNoType'         => 'biz_no_type',
         'sourceMark'        => 'source_mark',
         'expectCondition'   => 'expect_condition',
+        'outBatchNo'        => 'out_batch_no',
+        'taskType'          => 'task_type',
     ];
 
     public function validate()
     {
         Model::validateRequired('scene', $this->scene, true);
-        Model::validateRequired('bizNoType', $this->bizNoType, true);
         Model::validateMaxLength('scene', $this->scene, 32);
         Model::validateMaxLength('bizNoType', $this->bizNoType, 32);
         Model::validateMaxLength('sourceMark', $this->sourceMark, 32);
@@ -89,6 +99,12 @@ class SubmitScenedataTaskRequest extends Model
                     $res['expect_condition'][$n++] = null !== $item ? $item->toMap() : $item;
                 }
             }
+        }
+        if (null !== $this->outBatchNo) {
+            $res['out_batch_no'] = $this->outBatchNo;
+        }
+        if (null !== $this->taskType) {
+            $res['task_type'] = $this->taskType;
         }
 
         return $res;
@@ -125,6 +141,12 @@ class SubmitScenedataTaskRequest extends Model
                     $model->expectCondition[$n++] = null !== $item ? BizNoCondition::fromMap($item) : $item;
                 }
             }
+        }
+        if (isset($map['out_batch_no'])) {
+            $model->outBatchNo = $map['out_batch_no'];
+        }
+        if (isset($map['task_type'])) {
+            $model->taskType = $map['task_type'];
         }
 
         return $model;
