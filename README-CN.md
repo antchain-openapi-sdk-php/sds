@@ -9,7 +9,7 @@
 ### Composer
 
 ```bash
-composer require antchain/sds
+composer require antchain/SDS
 ```
 
 ## 问题

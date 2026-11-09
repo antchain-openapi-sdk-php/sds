@@ -1,13 +1,86 @@
 <?php
 
 // This file is auto-generated, don't edit it. Thanks.
-
 namespace AntChain\SDS\Models;
 
 use AlibabaCloud\Tea\Model;
 
-class QueryFavorStocksRequest extends Model
-{
+class QueryFavorStocksRequest extends Model {
+    protected $_name = [
+        'authToken' => 'auth_token',
+        'productInstanceId' => 'product_instance_id',
+        'offset' => 'offset',
+        'limit' => 'limit',
+        'stockCreatorMchid' => 'stock_creator_mchid',
+        'createStartTime' => 'create_start_time',
+        'createEndTime' => 'create_end_time',
+        'status' => 'status',
+    ];
+    public function validate() {
+        Model::validateRequired('offset', $this->offset, true);
+        Model::validateRequired('limit', $this->limit, true);
+        Model::validateRequired('stockCreatorMchid', $this->stockCreatorMchid, true);
+    }
+    public function toMap() {
+        $res = [];
+        if (null !== $this->authToken) {
+            $res['auth_token'] = $this->authToken;
+        }
+        if (null !== $this->productInstanceId) {
+            $res['product_instance_id'] = $this->productInstanceId;
+        }
+        if (null !== $this->offset) {
+            $res['offset'] = $this->offset;
+        }
+        if (null !== $this->limit) {
+            $res['limit'] = $this->limit;
+        }
+        if (null !== $this->stockCreatorMchid) {
+            $res['stock_creator_mchid'] = $this->stockCreatorMchid;
+        }
+        if (null !== $this->createStartTime) {
+            $res['create_start_time'] = $this->createStartTime;
+        }
+        if (null !== $this->createEndTime) {
+            $res['create_end_time'] = $this->createEndTime;
+        }
+        if (null !== $this->status) {
+            $res['status'] = $this->status;
+        }
+        return $res;
+    }
+    /**
+     * @param array $map
+     * @return QueryFavorStocksRequest
+     */
+    public static function fromMap($map = []) {
+        $model = new self();
+        if(isset($map['auth_token'])){
+            $model->authToken = $map['auth_token'];
+        }
+        if(isset($map['product_instance_id'])){
+            $model->productInstanceId = $map['product_instance_id'];
+        }
+        if(isset($map['offset'])){
+            $model->offset = $map['offset'];
+        }
+        if(isset($map['limit'])){
+            $model->limit = $map['limit'];
+        }
+        if(isset($map['stock_creator_mchid'])){
+            $model->stockCreatorMchid = $map['stock_creator_mchid'];
+        }
+        if(isset($map['create_start_time'])){
+            $model->createStartTime = $map['create_start_time'];
+        }
+        if(isset($map['create_end_time'])){
+            $model->createEndTime = $map['create_end_time'];
+        }
+        if(isset($map['status'])){
+            $model->status = $map['status'];
+        }
+        return $model;
+    }
     // OAuth模式下的授权token
     /**
      * @var string
@@ -62,88 +135,5 @@ class QueryFavorStocksRequest extends Model
      * @var string
      */
     public $status;
-    protected $_name = [
-        'authToken'         => 'auth_token',
-        'productInstanceId' => 'product_instance_id',
-        'offset'            => 'offset',
-        'limit'             => 'limit',
-        'stockCreatorMchid' => 'stock_creator_mchid',
-        'createStartTime'   => 'create_start_time',
-        'createEndTime'     => 'create_end_time',
-        'status'            => 'status',
-    ];
 
-    public function validate()
-    {
-        Model::validateRequired('offset', $this->offset, true);
-        Model::validateRequired('limit', $this->limit, true);
-        Model::validateRequired('stockCreatorMchid', $this->stockCreatorMchid, true);
-    }
-
-    public function toMap()
-    {
-        $res = [];
-        if (null !== $this->authToken) {
-            $res['auth_token'] = $this->authToken;
-        }
-        if (null !== $this->productInstanceId) {
-            $res['product_instance_id'] = $this->productInstanceId;
-        }
-        if (null !== $this->offset) {
-            $res['offset'] = $this->offset;
-        }
-        if (null !== $this->limit) {
-            $res['limit'] = $this->limit;
-        }
-        if (null !== $this->stockCreatorMchid) {
-            $res['stock_creator_mchid'] = $this->stockCreatorMchid;
-        }
-        if (null !== $this->createStartTime) {
-            $res['create_start_time'] = $this->createStartTime;
-        }
-        if (null !== $this->createEndTime) {
-            $res['create_end_time'] = $this->createEndTime;
-        }
-        if (null !== $this->status) {
-            $res['status'] = $this->status;
-        }
-
-        return $res;
-    }
-
-    /**
-     * @param array $map
-     *
-     * @return QueryFavorStocksRequest
-     */
-    public static function fromMap($map = [])
-    {
-        $model = new self();
-        if (isset($map['auth_token'])) {
-            $model->authToken = $map['auth_token'];
-        }
-        if (isset($map['product_instance_id'])) {
-            $model->productInstanceId = $map['product_instance_id'];
-        }
-        if (isset($map['offset'])) {
-            $model->offset = $map['offset'];
-        }
-        if (isset($map['limit'])) {
-            $model->limit = $map['limit'];
-        }
-        if (isset($map['stock_creator_mchid'])) {
-            $model->stockCreatorMchid = $map['stock_creator_mchid'];
-        }
-        if (isset($map['create_start_time'])) {
-            $model->createStartTime = $map['create_start_time'];
-        }
-        if (isset($map['create_end_time'])) {
-            $model->createEndTime = $map['create_end_time'];
-        }
-        if (isset($map['status'])) {
-            $model->status = $map['status'];
-        }
-
-        return $model;
-    }
 }
